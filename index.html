@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles/app.css"> 
+	</head>
+	<body style="width: 100%; max-width: 700px; ">
+
+	<div id="app">
+		
+		<p>{{ message }}</p>
+		
+		<div id="fretboardLayers">
+			<div id="fretboardDots" style="position: absolute; width: 100%; z-index: 0;">
+				<div class="dot" style="left: 145px; top: 73px;"></div>
+				<div class="dot" style="left: 201px; top: 73px;"></div>
+				<div class="dot" style="left: 257px; top: 73px;"></div>
+				<div class="dot" style="left: 315px; top: 73px;"></div>
+				<div class="dot" style="left: 398px; top: 47px;"></div>
+				<div class="dot" style="left: 398px; top: 100px;"></div>
+				<div class="dot" style="left: 483px; top: 73px;"></div>
+				<div class="dot" style="left: 540px; top: 73px;"></div>
+				<div class="dot" style="left: 595px; top: 73px;"></div>
+				<div class="dot" style="left: 653px; top: 73px;"></div>
+			</div> 
+			<div id="fretboardStrings" style="position: absolute; width: 100%; z-index: 1;">
+				<div class="stringLineContainer" style="">
+					<div class="stringLine"></div>
+				</div>
+				<div class="stringLineContainer" style="">
+					<div class="stringLine"></div>
+				</div>
+				<div class="stringLineContainer" style="">
+					<div class="stringLine"></div>
+				</div>
+				<div class="stringLineContainer" style="">
+					<div class="stringLine"></div>
+				</div>
+				<div class="stringLineContainer" style="">
+					<div class="stringLine"></div>
+				</div>
+				<div class="stringLineContainer" style="">
+					<div class="stringLine"></div>
+				</div>
+			</div> 
+			<div id="fretboard" style="width: 100%; z-index: 2;"> 
+				<div v-for="gstring in strings" class="stringRow" style="">
+					<div style="width: 50px; text-align: left;">
+						{{ gstring.name }}
+					</div>
+					<div v-for="fret in gstring.frets" 
+							class="fretContainer"
+							style="">
+						<div class="fret"
+							v-bind:class="{ 
+								visible: fret.isInScale(key),
+								root: fret.isRoot(key, selectedChord),
+								third: fret.isNth(key, selectedChord, 3),
+								fifth: fret.isNth(key, selectedChord, 5),
+								seventh: showSeventh && fret.isNth(key, selectedChord, 7),
+							}">
+							{{ fret.note }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br>
+		<span v-for="note in NOTES">
+			<input type="radio" :value="note" v-model="key">
+			{{ note }}
+		</span>
+
+
+		<br>
+		<div v-for="chord in CHORDS">
+			<input type="radio" :value="chord" v-model="selectedChord">
+			{{ formatChord(chord) }}
+		</div>
+	  
+	</div>
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="scripts/app.js"></script>
+	</body>
+</html>
