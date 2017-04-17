@@ -63,19 +63,23 @@
 .root {
 	border: 1px solid #f00;
 	border-radius: 13px;
+	background: rgba(255,0,0,0.3);
 }
 
 .third {
 	border: 1px solid #00f;
 	border-radius: 13px;
+	background: rgba(0,0,255,0.3);
 }
 
 .fifth {
 	border: 1px solid #0f0;
 	border-radius: 13px;
+	background: rgba(0,255,0,0.3);
 }
 
 .seventh {
 	border: 1px solid #ff0;
 	border-radius: 13px;
+	background: rgba(255,255,0,0.3);
 }
