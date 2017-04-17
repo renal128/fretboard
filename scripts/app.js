@@ -34,7 +34,7 @@ class Fret {
 	}
 	
 	isRoot(tonic, chord) {
-		return this.isNth(tonic, chord, 0);
+		return this.isNth(tonic, chord, 1);
 	}
 
 }
